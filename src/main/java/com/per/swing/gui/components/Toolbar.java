@@ -1,4 +1,4 @@
-package components.MainForm;
+package com.per.swing.gui.components;
 
 import javax.swing.*;
 import java.awt.*;

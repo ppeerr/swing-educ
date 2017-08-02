@@ -1,4 +1,6 @@
-import components.MainForm.MainFrame;
+package com.per.swing;
+
+import com.per.swing.gui.components.MainFrame;
 
 import javax.swing.*;
 

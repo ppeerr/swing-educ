@@ -1,4 +1,4 @@
-package filter;
+package com.per.swing.gui.filter;
 
 import javax.swing.filechooser.FileFilter;
 import java.io.File;

@@ -1,7 +1,7 @@
-package components.MainForm;
+package com.per.swing.gui.components;
 
-import components.MainForm.Form.FormPanel;
-import filter.PersonFileFilter;
+import com.per.swing.gui.components.form.FormPanel;
+import com.per.swing.gui.filter.PersonFileFilter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,6 +26,7 @@ public class MainFrame extends JFrame {
 
 
     public MainFrame() {
+
         super("Fuck yeah!");
         setLayout(new BorderLayout()); //TODO what for?
 
@@ -50,9 +51,7 @@ public class MainFrame extends JFrame {
         fileChooser.addChoosableFileFilter(new PersonFileFilter());
 
         JMenuItem exportDataItem = new JMenuItem("Export Data...");
-        exportDataItem.addActionListener(e -> {
-            fileChooser.showSaveDialog(this);
-        });
+        exportDataItem.addActionListener(e -> fileChooser.showSaveDialog(this));
         fileMenu.add(exportDataItem);
 
         JMenuItem importDataItem = new JMenuItem("Import Data...");

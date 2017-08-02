@@ -1,4 +1,4 @@
-package components.MainForm.Form;
+package com.per.swing.gui.components.form;
 
 import javax.swing.*;
 import javax.swing.border.Border;

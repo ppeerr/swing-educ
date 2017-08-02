@@ -1,9 +1,9 @@
-package components.MainForm.Form;
+package com.per.swing.gui.components.form;
 
 import java.util.EventListener;
 
 public interface FormListener extends EventListener {
 
-    public void formEventCatched(FormEvent e);
+    void formEventCatched(FormEvent e);
 
 }
