@@ -92,9 +92,9 @@ public class FormPanel extends JPanel {
 
     private void initAgeList() {
         DefaultListModel<AgeCategory> listModel = new DefaultListModel<>();
-        listModel.addElement(new AgeCategory(0,"0-19 years old"));
-        listModel.addElement(new AgeCategory(1,"20-85 years old"));
-        listModel.addElement(new AgeCategory(2,"86-100 years old"));
+        listModel.addElement(new AgeCategory(0,"CHILD"));
+        listModel.addElement(new AgeCategory(1,"ADULT"));
+        listModel.addElement(new AgeCategory(2,"SENIOR"));
 
         ageList.setModel(listModel);
         ageList.setPreferredSize(new Dimension(110, 70));
@@ -112,9 +112,10 @@ public class FormPanel extends JPanel {
 
     private void initEmploymentTypeComboBox() {
         DefaultComboBoxModel<String> comboBoxModel = new DefaultComboBoxModel<>();
-        comboBoxModel.addElement("Freelancer");
-        comboBoxModel.addElement("Full-stack");
-        comboBoxModel.addElement("Back-end");
+        comboBoxModel.addElement("EMPLOYED");
+        comboBoxModel.addElement("SELF_EMPLOYED");
+        comboBoxModel.addElement("UNEMPLOYED");
+        comboBoxModel.addElement("OTHER");
 
         empComboBox.setModel(comboBoxModel);
         empComboBox.setBorder(BorderFactory.createEtchedBorder());
@@ -177,8 +178,8 @@ public class FormPanel extends JPanel {
         genderGroup.add(maleRadio);
         genderGroup.add(femaleRadio);
         femaleRadio.setSelected(true);
-        femaleRadio.setActionCommand("female");
-        maleRadio.setActionCommand("male");
+        femaleRadio.setActionCommand("FEMALE");
+        maleRadio.setActionCommand("MALE");
 
         add(new JLabel("Gender: "), new GridBagConstraints(
                 0, 6,

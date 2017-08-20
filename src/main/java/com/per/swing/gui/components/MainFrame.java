@@ -1,7 +1,9 @@
 package com.per.swing.gui.components;
 
+import com.per.swing.controller.Controller;
 import com.per.swing.gui.components.form.FormPanel;
 import com.per.swing.gui.filter.PersonFileFilter;
+import com.per.swing.model.Person;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +16,8 @@ import java.awt.event.KeyEvent;
  * Created by PER on 02.07.2017.
  */
 public class MainFrame extends JFrame {
+
+    private Controller controller = new Controller();
 
     private TextPanel textPanel = new TextPanel();
     private Toolbar toolbar = new Toolbar();
@@ -111,10 +115,10 @@ public class MainFrame extends JFrame {
     private void initFormPanel() {
         add(formPanel, BorderLayout.WEST);
 
-        formPanel.setFormListener(e -> textPanel.appendText(
-                e.getName() + " : " + e.getOccupation() + " : " + e.getAgeCat() + " : " + e.getEmployment() + " : " + e.getTax() +
-                        " : " + e.getGender() + "\n")
-        );
+        formPanel.setFormListener(event -> {
+            //controller.addPerson(event);
+            Person.checkPersons(new Person(), new Person(), new Person());
+        });
     }
 
     private void initBtn() {
