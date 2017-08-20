@@ -1,0 +1,74 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="PER (generated)" id="1503206332782-1">
+        <createTable tableName="cats">
+            <column name="guid" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="tail_length" type="INT"/>
+            <column name="mate_id" type="VARCHAR(255)"/>
+            <column name="person_guid" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-2">
+        <createTable tableName="mother_kitten">
+            <column name="mother_guid" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="kitten_guid" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-3">
+        <createTable tableName="people">
+            <column name="discriminator" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="guid" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="lastname" type="VARCHAR(255)"/>
+            <column name="patronymic" type="VARCHAR(255)"/>
+            <column name="department_name" type="VARCHAR(255)"/>
+            <column name="joining_date" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-4">
+        <createTable tableName="students">
+            <column name="id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-5">
+        <addPrimaryKey columnNames="guid" constraintName="cats_pkey" tableName="cats"/>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-6">
+        <addPrimaryKey columnNames="guid" constraintName="people_pkey" tableName="people"/>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-7">
+        <addPrimaryKey columnNames="id" constraintName="pk_students" tableName="students"/>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-8">
+        <addUniqueConstraint columnNames="kitten_guid" constraintName="uk_s98alnrd5w2l9kklldu462ssh" tableName="mother_kitten"/>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-9">
+        <addForeignKeyConstraint baseColumnNames="mother_guid" baseTableName="mother_kitten" constraintName="fk_225wtesa83yo0dgqb2fdf4mdd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="guid" referencedTableName="cats"/>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-10">
+        <addForeignKeyConstraint baseColumnNames="person_guid" baseTableName="cats" constraintName="fk_92mm7i23fvx8pb0kvnpt7976k" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="guid" referencedTableName="people"/>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-11">
+        <addForeignKeyConstraint baseColumnNames="kitten_guid" baseTableName="mother_kitten" constraintName="fk_s98alnrd5w2l9kklldu462ssh" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="guid" referencedTableName="cats"/>
+    </changeSet>
+    <changeSet author="PER (generated)" id="1503206332782-12">
+        <addForeignKeyConstraint baseColumnNames="mate_id" baseTableName="cats" constraintName="fk_tr377qj6gxhl55nr08l6c96t0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="guid" referencedTableName="cats"/>
+    </changeSet>
+</databaseChangeLog>

@@ -6,7 +6,7 @@
 
     <groupId>com.per.swing</groupId>
     <artifactId>swing</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
 
     <build>
         <plugins>
@@ -23,8 +23,17 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>3.5.3</version>
                 <configuration>
-                    <propertyFile>/src/main/liquibase/liquibasePG.properties</propertyFile>
+                    <propertyFile>/src/main/liquibase/liquibaseORACLE.properties</propertyFile>
                 </configuration>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>futureRollbackSQL</goal>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -38,8 +47,8 @@
         </dependency>
         <dependency>
             <groupId>com.oracle</groupId>
-            <artifactId>ojdbc14</artifactId>
-            <version>10.2.0.4.0</version>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.3</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
