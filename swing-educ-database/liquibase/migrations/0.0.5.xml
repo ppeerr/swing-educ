@@ -1,0 +1,53 @@
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+                   xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd'>
+
+    <changeSet id="2017-11-06__01" author="per">
+        <comment>Persons table create</comment>
+
+        <createTable tableName="persons">
+            <column name="id" type="integer">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(512)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patronymic_name" type="varchar(512)"/>
+            <column name="time_zone_offset" type="smallint" defaultValueNumeric="0" remarks="UTC timezone">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="create_date" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="update_date" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2017-11-06__02" author="per">
+        <comment>Persons IDs sequence</comment>
+        <createSequence sequenceName="persons_id_seq"/>
+    </changeSet>
+
+    <include file="liquibase/func/func_persons_BIT.xml"/>
+    <include file="liquibase/trg/trg_persons_BIT.xml"/>
+
+    <include file="liquibase/func/func_persons_BUT.xml"/>
+    <include file="liquibase/trg/trg_persons_BUT.xml"/>
+
+    <changeSet id="2017-11-06__03" author="per">
+        <comment>Insert the first person</comment>
+
+        <insert tableName="persons">
+            <column name="name">Anton</column>
+            <column name="surname">Kupreychik</column>
+            <column name="patronymic_name">Fedorovich</column>
+            <column name="time_zone_offset">7</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

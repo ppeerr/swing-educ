@@ -1,0 +1,22 @@
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+                   xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd'>
+
+    <changeSet id="trg_persons_BIT" author="per" runOnChange="true">
+        <preConditions>
+            <changeSetExecuted id="func_persons_BIT" author="per" changeLogFile="liquibase/func/func_persons_BIT.xml"/>
+        </preConditions>
+        <comment>Create before insert trigger for persons</comment>
+        <createProcedure>
+            <![CDATA[
+            CREATE TRIGGER trg_persons_BIT BEFORE INSERT ON persons
+              FOR EACH ROW EXECUTE PROCEDURE func_persons_bit();
+            ]]>
+        </createProcedure>
+        <rollback>
+            DROP TRIGGER IF EXISTS trg_persons_BIT ON persons;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

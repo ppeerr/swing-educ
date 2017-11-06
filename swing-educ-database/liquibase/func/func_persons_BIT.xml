@@ -1,0 +1,32 @@
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+                   xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd'>
+
+
+    <changeSet id="func_persons_BIT" author="per" runOnChange="true">
+        <preConditions>
+            <changeSetExecuted id="2017-11-06__02" author="per" changeLogFile="liquibase/migrations/0.0.5.xml"/>
+        </preConditions>
+
+        <comment>Before insert to persons trigger function</comment>
+
+        <createProcedure>
+            <![CDATA[
+            CREATE OR REPLACE FUNCTION func_persons_bit()
+            RETURNS TRIGGER AS $$
+            BEGIN
+            NEW.id = nextval('persons_id_seq');
+            NEW.create_date = now();
+            return NEW;
+            END;
+            $$ LANGUAGE 'plpgsql';
+            ]]>
+        </createProcedure>
+
+        <rollback>
+            DROP FUNCTION IF EXISTS func_persons_bit();
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

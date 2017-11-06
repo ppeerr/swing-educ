@@ -1,0 +1,22 @@
+<databaseChangeLog xmlns='http://www.liquibase.org/xml/ns/dbchangelog'
+                   xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+                   xsi:schemaLocation='http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd'>
+
+    <changeSet id="trg_persons_BUT" author="per" runOnChange="true">
+        <preConditions>
+            <changeSetExecuted id="func_persons_BUT" author="per" changeLogFile="liquibase/func/func_persons_BUT.xml"/>
+        </preConditions>
+        <comment>Create before update trigger for persons</comment>
+        <createProcedure>
+            <![CDATA[
+            CREATE TRIGGER trg_persons_BUT BEFORE UPDATE ON persons
+              FOR EACH ROW EXECUTE PROCEDURE func_persons_but();
+            ]]>
+        </createProcedure>
+        <rollback>
+            DROP TRIGGER IF EXISTS trg_persons_BUT ON persons;
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
