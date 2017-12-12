@@ -3,26 +3,30 @@ package com.per.swing.dao.persons;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity()
+@Entity
 @Table(name = "persons")
 public class Person {
 
     @SequenceGenerator(name="person_seq", sequenceName="persons_id_seq")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="person_seq")
     @Id
-    Integer id;
+    private Integer id;
 
-    String name;
+    private String name;
 
-    String surname;
+    private String surname;
 
-    String patronymicName;
+    @Column(name = "patronymic_name")
+    private String patronymicName;
 
-    short timeZoneOffset;
+    @Column(name = "time_zone_offset")
+    private short timeZoneOffset;
 
-    Date createDate;
+    @Column(name = "create_date")
+    private Date createDate;
 
-    Date updateDate;
+    @Column(name = "update_date")
+    private Date updateDate;
 
     public Integer getId() {
         return id;

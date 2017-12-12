@@ -1,6 +1,8 @@
 package com.per.swing.dto;
 
-public class PersonDto {
+import java.io.Serializable;
+
+public class PersonDto implements Serializable {
 
     int id;
     String name;
@@ -8,6 +10,13 @@ public class PersonDto {
     String patronymicName;
     short timezoneOffset;
 
+    public PersonDto(int id, String name, String surname, String patronymicName, short timezoneOffset) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.patronymicName = patronymicName;
+        this.timezoneOffset = timezoneOffset;
+    }
 
     public int getId() {
         return id;
